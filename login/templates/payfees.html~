@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Pay fees{% endblock %}
+{% block head %}Pay fees{% endblock %}
+{% block content %}
+
+<ul class="nav">
+
+
+   {% if user.is_staff %}
+   <li> <a  href="/faculty/">Home</a></li>
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+    <li> <a  href="/student/">Home</a></li>
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a class ="active" href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a  href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+
+<div class="container">
+
+
+
+{% if flag == "b" %}
+<p> You need to complete the prerequisite of the course {{ course.name }} which is {{course.prerequisite}}</p>
+{%endif%}
+
+{% if flag == "c"  %}
+<p>You have already registered for the course {{ course.name }} </p>
+
+
+{% else %}
+
+<p> The fee to be paid is:</p>
+<p> {{ fees }}$ ({{ n }} course(s))</p>
+<input type="submit" value="Pay Fees" onclick="location.href = '/feesuccess/';"/>
+{% endif %}
+</div>
+{% endblock %}

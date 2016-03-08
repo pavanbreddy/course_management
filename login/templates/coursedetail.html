@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Add Courses{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+
+  <ul class="nav">
+   {% if user.is_staff %}
+   <li> <a  href="/faculty/">Home</a></li>
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+    <li> <a  href="/student/">Home</a></li>
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a  href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+    <div class="container">
+
+        <h1><a href="#">{{ course.name }}</a></h1>
+        <p><b><u>Instructor:</b></u> {{ course.instructor.username }}</p>
+        <p><b><u>Syllabus:</b></u> {{ course.syllabus }}</p>
+        <p><b><u>Prerequisites:</b></u> {{ course.prerequisite.name }}</p>
+        
+        {% if user.is_staff %}
+        {% if course.instructor == user %}
+        <p><b>Manage Courses</b></p>
+        <h2><a href="{% url "login:addevent" pk=course.pk %}">Add Course Events</a></h2>
+        <br>
+        {% endif %}
+        {% endif %}
+
+        <h2><b>Events for this course are</b></h2>
+        {% for even in events %}
+        <p><b>*)<u>Time added:</b></u> {{ even.date }}    {{ even.time }} </p>
+        {% if even.deadline %}
+        <p><b><u>Deadline:</u></b> {{ even.deadline }}</p>
+        {% endif %}
+        <p><b><u>Event:</b></u> {{ even.event }}</p>
+        {% if even.docfile %}
+        <p><a href="{{ MEDIA_URL }}{{even.docfile.url}}">Uploaded File</a></p>
+        {% endif %}
+        <br>
+        <br>
+        {% endfor %}
+        <br>
+        <br>
+
+        {% if course.instructor != user %}
+        <h2><b>Contact Instructor</b></h2>
+            <form method="post"  action="." id="confirm">
+                {% csrf_token %}
+                 <table border="0">
+                {{ form.as_table }}
+                 </table>
+                <div class="form-actions">
+                  <button onclick="myFunction()">Send</button>
+                
+                  
+                </div>
+             </form>
+             
+             <script>
+function myFunction() {
+    alert("Sending mail to {{ course.instructor.email  }}");
+}
+</script>
+        <br>
+        {% endif %}
+</div>
+
+        
+{% endblock %} 
+
+
+
+
+
+
+     

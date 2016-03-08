@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}View Courses{% endblock %}
+{% block head %}Register for Courses{% endblock %}
+{% block content %}
+    
+    <div class="container">
+    <h1>Parent Portal</h1>
+    <form method='GET', action='/parent/'>
+    <b>childid:</b>
+    <input type="text" name="childid"><br>
+    <b>emailid:</b>
+    <input type="text" name="emailid">
+    <br><br><button type="submit" class="btn">Login</button>
+    </form>
+    </div>
+   
+ <div class="contain"> 
+{%for use in user %}
+<h1>The courses registered by your child {{ use.firstname }} are</h1>
+{%endfor%}
+ 
+{% for course in regcourses %}
+        <p><b><a href="{% url "login:coursedisplay" pk=course.pk %}">{{ course.name }}</a></b></p>
+        <p><b><u>Syllabus:</u></b> {{ course.syllabus }}</p>
+        <br>
+{% endfor %}
+    
+   
+    
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Registered Courses{% endblock %}
+{% block head %}Your Courses are{% endblock %}
+{% block content %}
+
+ <div class="container">
+{% for course in regcourses %}
+        <h1><a href="{% url "login:coursedisplay" pk=course.pk %}">{{ course.name }}</a></h1>
+
+        <p><b><u>Syllabus:</u></b> {{ course.syllabus }}</p>
+        
+        <br>
+        <br>
+{% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Welcome to University Course Management{% endblock %}
+{% block head %}Welcome to University Course Management{% endblock %}
+{% block content %}
+    <p>Welcome {{ user.username }} !!!</p>
+    
+    <p>Add Courses</p>
+    <a href="/courseadd/">Add Courses</a>
+    <br>
+    <br>
+    <p>View Courses</p>
+    <a href="/coursedisplay/">View Courses</a>
+    <br>
+    <p>Your Courses</p>
+    <a href="/registeredcourses/">Your Courses</a>
+    <br>
+    <p>Register Courses</p>
+    <a href="/courseregister/">Register for Course</a>
+    <br>
+    <p>Pay Fees</p>
+    <a href="/payfees/">Pay Fees</a>
+    <br>
+    <a href="/logout/">Logout</a>
+{% endblock %}

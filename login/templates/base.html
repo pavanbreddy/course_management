@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load staticfiles %}
+<html class>
+    <head>
+        <title>University Course Management Application |
+        <link rel="stylesheet" type="text/css" href= "{% static "nav.css" %}" />
+        <link rel="stylesheet" href="./font-awesome-4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+        {% block title %}{% endblock %}</title>
+    </head>
+    <body style="background-color:#FFFFF2";>
+        <div class="header">
+            <h1>Course Management</h1>
+        </div>
+        {% block content %}{% endblock %}
+    </body><link rel="stylesheet" type="text/css" href= "{% static "nav.css" %}" />
+</html>

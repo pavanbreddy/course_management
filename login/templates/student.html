@@ -1,0 +1,40 @@
+
+
+{% extends "base.html" %}
+
+
+{% block title %}Course Management{% endblock %}
+
+{% block content %}
+
+
+
+     <ul class="nav">
+   <li> <a class="active" href="/student/">Home</a></li>
+
+   {% if user.is_staff %}
+
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+
+
+     <p class="welcome">Welcome {{ user.first_name }} !</p>
+    <div class="container">
+    <h2>Upcoming Events</h2>
+    {% for cour in course %}
+     <h3><a href="{% url "login:coursedisplay" pk=cour.pk %}">{{ cour.cid.name }}</a></h3>
+     <p><b><u>Task:</u></b>{{ cour.event }} </p>
+     <p><b><u>Scheduled Date:</u></b>{{ cour.deadline }}</p>
+
+    {%endfor%}
+    </div>
+{% endblock %}

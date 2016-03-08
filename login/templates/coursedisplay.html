@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Add Courses{% endblock %}
+{% block head %}All the courses supported by the System are{% endblock %}
+{% block content %}
+{% for course in courses %}
+
+   <ul class="nav">
+
+
+   {% if user.is_staff %}
+   <li> <a  href="/faculty/">Home</a></li>
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+    <li> <a  href="/student/">Home</a></li>
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a class="active" href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+    <div class="container">
+        <h1><a href="{% url "login:coursedisplay" pk=course.pk %}">{{ course.name }}</a></h1>
+        <p><b><u>Instructor:</u></b> {{ course.instructor.username }}</p>
+        <p><b><u>Syllabus:</u></b> {{ course.syllabus }}</p>
+        <p><b><u>Prerequisite:</u></b> {{ course.prerequisite.name }}</p>
+        <br>
+        <br>
+    </div>
+{% endfor %}
+{% endblock %}

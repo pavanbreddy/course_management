@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Registered Courses{% endblock %}
+{% block head %}Your Courses are{% endblock %}
+{% block content %}
+
+     <ul class="nav">
+
+
+   {% if user.is_staff %}
+   <li> <a  href="/faculty/">Home</a></li>
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+    <li> <a  href="/student/">Home</a></li>
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a class ="active" href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a  href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+ <div class="container">
+{% for course in regcourses %}
+        <h1><a href="{% url "login:coursedisplay" pk=course.pk %}">{{ course.name }}</a></h1>
+
+        <p><b><u>Instructor:</u></b> {{ course.syllabus }}</p>
+        
+        <br>
+        <br>
+{% endfor %}
+
+{% for coursec in createdcourses %}
+        <h1><a href="{% url "login:coursedisplay" pk=coursec.pk %}">{{ coursec.name }}</a></h1>
+        
+        <p><b><u>Instructor:</u></b> {{ coursec.instructor }}</p>
+        
+        <br>
+        <br>
+{% endfor %}
+</div>
+{% endblock %}

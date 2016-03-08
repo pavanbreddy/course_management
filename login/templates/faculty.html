@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Welcome to University Course Management{% endblock %}
+{% block head %}Welcome to University Course Management{% endblock %}
+{% block content %}
+
+
+    <ul class="nav">
+   <li> <a class="active" href="/faculty/">Home</a></li>
+
+   {% if user.is_staff %}
+
+  <li>  <a href="/courseadd/">Add Courses</a></li>
+   {% else %}
+  <li>  <a href="/courseregister/">Register for Course</a></li>
+   {% endif %}
+
+   <li> <a href="/registeredcourses/">Your Courses</a></li>
+
+   <li><a href="/coursedisplay/">View all Courses</a> </li>
+
+    <li><a href="/logout/">Logout</a></li>
+    </ul>
+
+
+
+
+     <p class="welcome">Welcome {{ user.first_name }} !</p>
+
+    <!--<p><b>Manage Courses</b></p>
+    <a href="/addevent/">Add Course Events</a>
+    <br>-->
+
+
+{% endblock %}
